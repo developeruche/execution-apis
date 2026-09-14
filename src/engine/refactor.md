@@ -655,17 +655,9 @@ with two transactions:
 ```
 HTTP/2 200
 Content-Type: application/octet-stream
-Content-Length: 2807
 
 <2807 bytes: SSZ(PayloadStatusWithWitness)>
 ```
-
-The 2807 bytes break down as: three 4-byte offsets (12 bytes) +
-`payload_status` (41 bytes, identical to the `/payloads` response) +
-`witness` (2624 bytes: `state`, `codes`, and `headers` as opaque
-`ByteList`s) + `public_keys` (2 × 65 bytes, no per-key offsets).
-For any status other than `VALID`, `witness` and `public_keys` are
-both empty and the body shrinks to the offsets plus `payload_status`.
 
 Error response (`Eth-Execution-Version` names a fork before Amsterdam):
 
